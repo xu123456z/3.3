@@ -32,13 +32,14 @@ public class TestGsonActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Student student = gson.fromJson("{\n" +
-                        "\t\"age\": 20,\n" +
-                        "\t\"married\": false,\n" +
-                        "\t\"name\": \"张三\"\n" +
+                        "\t\"id\": 20,\n" +
+                        "\t\"graduation\": false,\n" +
+                        "\t\"name\": \"张三\",\n" +
+                        "\t\"height:\":175\n" +
                         "}", Student.class);
                 if (student != null) {
-                    String str = String.format("姓名：%s,年龄：%d，婚否：%b",
-                            student.getName(), student.getAge(), student.isMarried());
+                    String str = String.format("姓名：%s,id：%d，height：%d，是否毕业：%b",
+                            student.getName(), student.getId(),student.getHight(), student.isGraduation());
                     Toast.makeText(TestGsonActivity.this, str, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -50,9 +51,10 @@ public class TestGsonActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Student student = new Student();
-                student.setAge(10);
-                student.setName("zhangsan");
-                student.setMarried(false);
+                student.setName("李四");
+                student.setHight(175);
+                student.setId(10);
+                student.setGraduation(true);
                 String json = gson.toJson(student);
                 Log.d(TAG, "onClick: " + json);
             }
@@ -65,19 +67,22 @@ public class TestGsonActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String json = "[\n" +
                         "\t{\n" +
-                        "\t\t\"age\": 20,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"张三\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\"graduation\": false,\n" +
+                        "\t\"name\": \"张三\",\n" +
+                        "\t\"height:\":175\n" +
                         "\t},\n" +
                         "\t{\n" +
-                        "\t\t\"age\": 21,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"李四\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\"graduation\": false,\n" +
+                        "\t\"name\": \"李四\",\n" +
+                        "\t\"height:\":175\n" +
                         "\t},\n" +
                         "\t{\n" +
-                        "\t\t\"age\": 22,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"王五\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\"graduation\": false,\n" +
+                        "\t\"name\": \"王五\",\n" +
+                        "\t\"height:\":175\n" +
                         "\t}\n" +
                         "]";
                 Type type = new TypeToken<List<Student>>() {
@@ -86,8 +91,8 @@ public class TestGsonActivity extends AppCompatActivity {
                 String str = "";
                 if (studentList != null || !studentList.isEmpty()) {
                     for (Student student : studentList) {
-                        str = str + String.format("姓名：%s,年龄：%d，婚否：%b",
-                                student.getName(), student.getAge(), student.isMarried());
+                        str = str + String.format("姓名：%s,id：%d，height：%d，是否毕业：%b",
+                                student.getName(), student.getId(),student.getHight(), student.isGraduation());
                     }
                     Toast.makeText(TestGsonActivity.this, str, Toast.LENGTH_SHORT).show();
                 }
@@ -101,19 +106,22 @@ public class TestGsonActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String json = "{\n" +
                         "\t\"1\":{\n" +
-                        "\t\t\"age\": 20,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"张三\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\t\"graduation\": false,\n" +
+                        "\t\t\"name\": \"张三\",\n" +
+                        "\t\t\"height:\": 175\n" +
                         "\t},\n" +
                         "\t\"2\":{\n" +
-                        "\t\t\"age\": 21,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"李四\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\t\"graduation\": false,\n" +
+                        "\t\t\"name\": \"李四\",\n" +
+                        "\t\t\"height:\": 175\n" +
                         "\t},\n" +
                         "\t\"3\":{\n" +
-                        "\t\t\"age\": 22,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"王五\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\t\"graduation\": false,\n" +
+                        "\t\t\"name\": \"王五\",\n" +
+                        "\t\t\"height:\": 175\n" +
                         "\t}\n" +
                         "}";
                 Type type=new TypeToken<Map<String, Student>>(){}.getType();
@@ -122,8 +130,8 @@ public class TestGsonActivity extends AppCompatActivity {
                 if (map!=null){
                     for(String key: map.keySet()){
                         Student student = map.get(key);
-                        str = str + String.format("序号：%s,姓名：%s,年龄：%d，婚否：%b",
-                                key,student.getName(), student.getAge(), student.isMarried());
+                        str = str + String.format("姓名：%s,id：%d，height：%d，是否毕业：%b",
+                                student.getName(), student.getId(),student.getHight(), student.isGraduation());
                     }
                     Toast.makeText(TestGsonActivity.this, str, Toast.LENGTH_SHORT).show();
                 }
@@ -138,17 +146,18 @@ public class TestGsonActivity extends AppCompatActivity {
                 String json="{\n" +
                         "\t\"data\":\n" +
                         "\t{\n" +
-                        "\t\t\"age\": 20,\n" +
-                        "\t\t\"married\": false,\n" +
-                        "\t\t\"name\": \"张三\"\n" +
+                        "\t\t\"id\": 20,\n" +
+                        "\t\"graduation\": false,\n" +
+                        "\t\"name\": \"张三\",\n" +
+                        "\t\"height:\":175\n" +
                         "\t},\n" +
                         "\t\"status\":1,\n" +
                         "\t\"msg\":\"正常\"\n" +
                         "}";
                 Type type=new TypeToken<ResultBase<Student>>(){}.getType();
                 ResultBase<Student> resultBase= gson.fromJson(json, type);
-                String str=String.format("姓名：%s,年龄：%d，婚否：%b",
-                        resultBase.data.getName(), resultBase.data.getAge(), resultBase.data.isMarried());
+                String str=String.format("姓名：%s,id：%d，height：%d，是否毕业：%b",
+                        resultBase.data.getName(), resultBase.data.getId(),resultBase.data.getHight(), resultBase.data.isGraduation());
                 Toast.makeText(TestGsonActivity.this, str, Toast.LENGTH_SHORT).show();
             }
         });

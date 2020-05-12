@@ -11,12 +11,17 @@ public class Student implements Serializable {
     /**
      * 年龄
      */
-    private int age;
+    private int id;
 
     /**
-     * 是否
+     * 身高
      */
-    private boolean married;
+    private int hight;
+
+    /**
+     * 毕业
+     */
+    private boolean graduation;
 
     public String getName() {
         return name;
@@ -26,19 +31,27 @@ public class Student implements Serializable {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getId() {
+        return id;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public boolean isMarried() {
-        return married;
+    public int getHight() {
+        return hight;
     }
 
-    public void setMarried(boolean married) {
-        this.married = married;
+    public void setHight(int hight) {
+        this.hight = hight;
+    }
+
+    public boolean isGraduation() {
+        return graduation;
+    }
+
+    public void setGraduation(boolean graduation) {
+        this.graduation = graduation;
     }
 }

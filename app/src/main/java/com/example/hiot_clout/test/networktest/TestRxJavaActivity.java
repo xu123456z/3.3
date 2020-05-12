@@ -29,6 +29,7 @@ public class TestRxJavaActivity extends AppCompatActivity {
     private NetService service;
     private EditText etTokenValue;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +41,13 @@ public class TestRxJavaActivity extends AppCompatActivity {
         //edittext
         etTokenValue = findViewById(R.id.et_token_value);
 
+
         //登录
         Button btnLogin = findViewById(R.id.btn_rxjava_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login("tamy", "abc123");
+                login("zhangdaxia", "abc123");
             }
         });
 
@@ -63,7 +65,7 @@ public class TestRxJavaActivity extends AppCompatActivity {
         btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                updateEmail(etTokenValue.getText().toString(),"13141314@qq.com");
             }
         });
 
@@ -72,9 +74,80 @@ public class TestRxJavaActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                register();
             }
         });
+    }
+
+    /**
+     * 用户注册
+     */
+    private void register() {
+        UserBean user = new UserBean();
+        user.setUsername("zhangdaxia100");
+        user.setPassword("abc123");
+        user.setEmail("13141314@qq.com");
+        user.setUserType("1");
+
+        Observable<ResultBase<UserBean>> observable = service.register(user);
+        observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ResultBase<UserBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResultBase<UserBean> resultBase) {
+                        String string=String.format("注册成功");
+                        Toast.makeText(TestRxJavaActivity.this, string, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    /**
+     * 修改邮箱
+     * @param authorization
+     * @param email
+     */
+    private void updateEmail(String authorization, String email) {
+        Observable<ResultBase<String>> observable = service.updateEmail(authorization, email);
+        observable.observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<ResultBase<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResultBase<String> resultBase) {
+                            String string=String.format("修改成功");
+                            Toast.makeText(TestRxJavaActivity.this, string, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     /**

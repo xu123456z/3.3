@@ -47,7 +47,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login("tamy", "abc123", "app");
+                login("zhangdaxia", "abc123", "app");
             }
         });
 
@@ -78,10 +78,10 @@ public class TestRetrofitActivity extends AppCompatActivity {
 
     private void register() {
         UserBean user = new UserBean();
-        user.setUsername("tamy2");
+        user.setUsername("zhangdaxia10");
         user.setPassword("abc123");
-        user.setEmail("1323232323@qq.com");
-        user.setUserType("0");
+        user.setEmail("13141314@qq.com");
+        user.setUserType("1");
 
         Call<ResponseBody> call = service.register(user);
         callEnqueue(call);
