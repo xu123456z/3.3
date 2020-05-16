@@ -92,6 +92,8 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
                 if (resultBase != null && !TextUtils.isEmpty(resultBase.getMsg())){
                     getView().showMessage(resultBase.getMsg());
                 }
+
+
             }
         });
     }
