@@ -16,6 +16,7 @@
 package com.example.hiot_clout.injection.component;
 
 
+import com.example.hiot_clout.test.networktest.TestNetworkPackActivity;
 import com.example.hiot_clout.ui.main.MainActivity;
 import com.example.hiot_clout.injection.PerActivity;
 import com.example.hiot_clout.injection.module.ActivityModule;
@@ -35,6 +36,8 @@ public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
     void inject(TestMVPActivity testMVPActivity);
+
+    void inject(TestNetworkPackActivity activity);
 
     @Component.Builder
     interface ActivityComponentBuilder {

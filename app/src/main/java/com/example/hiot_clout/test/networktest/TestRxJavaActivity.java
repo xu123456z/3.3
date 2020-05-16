@@ -11,11 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.hiot_clout.R;
-import com.example.hiot_clout.data.NetService;
+import com.example.hiot_clout.data.NetworkService;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -26,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TestRxJavaActivity extends AppCompatActivity {
     private static final String TAG = "TestRxJavaActivity";
     private Retrofit retrofit;
-    private NetService service;
+    private NetworkService service;
     private EditText etTokenValue;
 
 
@@ -234,6 +233,6 @@ public class TestRxJavaActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        service = retrofit.create(NetService.class);
+        service = retrofit.create(NetworkService.class);
     }
 }
